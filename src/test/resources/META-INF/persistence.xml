@@ -3,8 +3,30 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
              http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
-	<persistence-unit name="relationshipsTest" transaction-type="RESOURCE_LOCAL">
+	<persistence-unit name="relationshipsTest"
+		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<!-- <class>it.hella.relationship.manytoone.bidirectional.model.Employee</class> -->
+		<!-- <class>it.hella.relationship.manytoone.bidirectional.model.Project</class> -->
+		<!-- <class>it.hella.relationship.manytoone.unidirectional.model.Employee</class> -->
+		<!-- <class>it.hella.relationship.manytoone.unidirectional.model.Project</class> -->
+		<!-- <class>it.hella.relationship.onetomany.unidirectional.model.Employee</class> -->
+		<!-- <class>it.hella.relationship.onetomany.unidirectional.model.Project</class> -->
+		<!-- <class>it.hella.relationship.manytoone.bidirectional.cascade.model.Employee</class> -->
+		<!-- <class>it.hella.relationship.manytoone.bidirectional.cascade.model.Project</class> -->
+		<!-- <class>it.hella.relationship.onetoone.sharedkey.model.User</class> -->
+		<!-- <class>it.hella.relationship.onetoone.sharedkey.model.Address</class> -->
+		<!-- <class>it.hella.relationship.onetoone.foreignkey.model.User</class> -->
+		<!-- <class>it.hella.relationship.onetoone.foreignkey.model.Address</class> -->
+		<!-- <class>it.hella.hibernate.relationship.onetoone.jointable.model.Address</class> -->
+		<!-- <class>it.hella.hibernate.relationship.onetoone.jointable.model.User</class> -->
+		<!-- <class>it.hella.relationship.manytomany.unidirectional.model.Employee</class> -->
+		<!-- <class>it.hella.relationship.manytomany.unidirectional.model.Role</class> -->
+<!-- 		<class>it.hella.relationship.manytomany.bidirectional.model.Employee</class> -->
+<!-- 		<class>it.hella.relationship.manytomany.bidirectional.model.Role</class> -->
+<!-- 		<class>it.hella.relationship.manytomany.link.model.Employee</class> -->
+<!-- 		<class>it.hella.relationship.manytomany.link.model.Role</class> -->
+<!-- 		<class>it.hella.relationship.manytomany.link.model.EmployeeRole</class> -->
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.connection.url"
@@ -22,8 +44,8 @@
 				value="thread" />
 			<property name="hibernate.archive.autodetection" value="class, hbm" />
 			<property name="hibernate.hbm2ddl.auto" value="create" />
-			<property name="hibernate.show_sql" value="false" />
-			<property name="hibernate.format_sql" value="false" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
 		</properties>
 	</persistence-unit>
 </persistence>

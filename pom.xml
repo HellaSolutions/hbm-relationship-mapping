@@ -6,6 +6,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>hbm-relationship-mapping</name>
 	<description>ER relationship mapping examples </description>
+	<packaging>ejb</packaging>
 	<properties>
 		<version.jboss.bom>10.0.0.Final</version.jboss.bom>
 		<version.wildfly.maven.plugin>1.2.0.Alpha2</version.wildfly.maven.plugin>
@@ -81,6 +82,39 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ejb-plugin</artifactId>
+				<configuration>
+					<ejbVersion>3.2</ejbVersion>
+				</configuration>
+			</plugin>
+			<!-- Hibernate also offers the ability to integrate the enhancement of 
+				the domain model as part of the normal build cycle of that domain model. -->
+			<!-- Gradle, Ant and Maven are all supported. One possible benefit of 
+				this approach is that the enhanced classes are what gets added to the jar -->
+			<!-- and can then be used on both sides of serialization. -->
+			<plugin>
+				<groupId>org.hibernate.orm.tooling</groupId>
+				<artifactId>hibernate-enhance-maven-plugin</artifactId>
+				<version>${hibernate.version}</version>
+				<executions>
+					<execution>
+						<configuration>
+							<failOnError>true</failOnError>
+							<enableLazyInitialization>true</enableLazyInitialization>
+							<enableDirtyTracking>true</enableDirtyTracking>
+							<enableAssociationManagement>true</enableAssociationManagement>
+							<enableExtendedEnhancement>false</enableExtendedEnhancement>
+						</configuration>
+						<goals>
+							<goal>enhance</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -154,12 +188,25 @@
 								</configuration>
 							</execution>
 							<execution>
+								<id>deploy-postgresql</id>
+								<phase>package</phase>
+								<goals>
+									<goal>deploy-artifact</goal>
+								</goals>
+								<configuration>
+									<groupId>postgresql</groupId>
+									<artifactId>postgresql</artifactId>
+									<name>postgresql.jar</name>
+								</configuration>
+							</execution>
+							<execution>
 								<id>add_datasource</id>
 								<phase>install</phase>
 								<goals>
 									<goal>add-resource</goal>
 								</goals>
 								<configuration>
+									<force>true</force>
 									<address>subsystem=datasources</address>
 									<resources>
 										<resource>

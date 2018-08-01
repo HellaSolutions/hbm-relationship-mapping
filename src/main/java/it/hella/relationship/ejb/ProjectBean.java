@@ -11,8 +11,8 @@ import javax.persistence.TypedQuery;
 
 import com.google.common.base.Optional;
 
-import it.hella.relationship.model.Employee;
-import it.hella.relationship.model.Project;
+import it.hella.relationship.manytoone.bidirectional.model.Employee;
+import it.hella.relationship.manytoone.bidirectional.model.Project;
 
 @Stateless
 @Remote(ProjectHandler.class)
